@@ -1,0 +1,106 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      PIER: http://194.182.165.182
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install rig (binary, JVM, cache)
+        uses: brutasse/setup-rig@b204f6b12fde6574ebbebe0227fcaaa10391882f # v2.0.0
+        with:
+          version: v0.4.1
+
+      - name: Rig gate config
+        run: |
+          mkdir -p "$HOME/.config/rig"
+          cp pier/rig-auth.yaml "$HOME/.config/rig/auth.yaml"
+
+      - name: Request the OIDC token
+        id: token
+        run: |
+          # The audience must match pier/pier.yaml (auth.issuers[].audiences).
+          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            -d audience="https://194.182.165.182/" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
+          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
+          echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
+
+      - name: Publish
+        env:
+          RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
+        run: rig publish
+
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    env:
+      PIER: http://194.182.165.182
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install rig (binary, JVM, cache)
+        uses: brutasse/setup-rig@b204f6b12fde6574ebbebe0227fcaaa10391882f # v2.0.0
+        with:
+          version: v0.4.1
+
+      - name: Rig gate config
+        run: |
+          mkdir -p "$HOME/.config/rig"
+          cp pier/rig-auth.yaml "$HOME/.config/rig/auth.yaml"
+
+      - name: Request the OIDC token
+        id: token
+        run: |
+          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            -d audience="https://194.182.165.182/" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
+          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
+          echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
+
+      - name: Auth boundary
+        env:
+          PIER_TOKEN: ${{ steps.token.outputs.oidc }}
+        run: |
+          set -eu
+          ver="${GITHUB_REF_NAME#v}"
+          jar="$PIER/com/example/pier-example/$ver/pier-example-$ver.jar"
+          code() { curl -s -o /dev/null -w '%{http_code}' "$@"; }
+          with_token="$(code -H "Authorization: Bearer $PIER_TOKEN" "$jar")"
+          without_token="$(code "$jar")"
+          echo "GET jar with token:    $with_token (want 200)"
+          echo "GET jar without token: $without_token (want 401)"
+          [ "$with_token" = "200" ]
+          [ "$without_token" = "401" ]
+
+      - name: Consume the artifact through pier
+        env:
+          RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
+        run: |
+          set -eu
+          ver="${GITHUB_REF_NAME#v}"
+          mkdir -p consumer && cd consumer
+          # Single-repository consumer: every Maven artifact (the demo
+          # library and Clojure itself) resolves through pier — private
+          # artifacts from the bucket, public ones by pull-through.
+          cat > deps.edn <<EOF
+          {:rig/lib "example/pier-consumer"
+           :rig/jvm "21"
+           :deps {com.example/pier-example {:mvn/version "$ver"}
+                  org.clojure/clojure {:mvn/version "1.12.5"}}
+           :mvn/repos {"central" {:url "$PIER" :auth :oidc}
+                       "clojars" {:url "$PIER" :auth :oidc}}}
+          EOF
+          rig lock
+          rig check
+          echo "consumer locked com.example/pier-example $ver from pier"

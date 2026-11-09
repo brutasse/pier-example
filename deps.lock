@@ -1,0 +1,762 @@
+{
+  "version": 2,
+  "tool": {
+    "name": "rig",
+    "version": "v0.4.1"
+  },
+  "resolver": {
+    "lib": "io.github.brutasse/rig-resolver",
+    "version": "v0.4.1",
+    "git/sha": "c572d54",
+    "sha256": "3ad11c5f47bb5c41bf96905fee63602ff8b7414e2033fa67555d293dd400fcd3"
+  },
+  "workspace": {
+    "modules": [
+      ".",
+      "modules/pier-example",
+      "dev"
+    ],
+    "manifest_sha256": "b130e4f16555759691bd5611404cc9b2095827c00e3eb1c8adf206e877f61bcd"
+  },
+  "cooldown": {
+    "default": "48h",
+    "repos": {}
+  },
+  "jvm": {
+    "vendor": "temurin",
+    "requested": "21"
+  },
+  "artifacts": [
+    {
+      "id": "org.tcrawley/dynapath:1.1.0:jar",
+      "kind": "mvn",
+      "group": "org.tcrawley",
+      "name": "dynapath",
+      "version": "1.1.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/tcrawley/dynapath/1.1.0/dynapath-1.1.0.jar",
+      "sha256": "9fc7aa3be6385da3ad22a06526f15a5d335d9e89d40f39bf2f9a00e0bbbd8ae8",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "meta-merge/meta-merge:1.0.0:jar",
+      "kind": "mvn",
+      "group": "meta-merge",
+      "name": "meta-merge",
+      "version": "1.0.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/meta-merge/meta-merge/1.0.0/meta-merge-1.0.0.jar",
+      "sha256": "d7fee2e3e3d706e0e54562e72aa3712108d70186a12cbc090e10680582eb02c7",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/kaocha:1.91.1392:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "kaocha",
+      "version": "1.91.1392",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/kaocha/1.91.1392/kaocha-1.91.1392.jar",
+      "sha256": "5bb115d4cab178856ac93cadea557dbe966b2d173e4d640a9e635f88fa227ae8",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/core.specs.alpha:0.4.74:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "core.specs.alpha",
+      "version": "0.4.74",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/core.specs.alpha/0.4.74/core.specs.alpha-0.4.74.jar",
+      "sha256": "eb73ac08cf49ba840c88ba67beef11336ca554333d9408808d78946e0feb9ddb",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/core.rrb-vector:0.1.2:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "core.rrb-vector",
+      "version": "0.1.2",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/core.rrb-vector/0.1.2/core.rrb-vector-0.1.2.jar",
+      "sha256": "51f98eba7b2cd42ee30f3826925dcde8791167f76f712329ae51b88244e8138e",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "hawk/hawk:0.2.11:jar",
+      "kind": "mvn",
+      "group": "hawk",
+      "name": "hawk",
+      "version": "0.2.11",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/hawk/hawk/0.2.11/hawk-0.2.11.jar",
+      "sha256": "e943f2f0c487c6c5a6b20e70ce91dd5f31e40489570917bba13fcea73c9a7a43",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "net.incongru.watchservice/barbary-watchservice:1.0:jar",
+      "kind": "mvn",
+      "group": "net.incongru.watchservice",
+      "name": "barbary-watchservice",
+      "version": "1.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/net/incongru/watchservice/barbary-watchservice/1.0/barbary-watchservice-1.0.jar",
+      "sha256": "54c6cabd82093c8515f6e14e43d94bfe7e9fc795d15789f3943a1418d8263ab5",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "progrock/progrock:0.1.2:jar",
+      "kind": "mvn",
+      "group": "progrock",
+      "name": "progrock",
+      "version": "0.1.2",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/progrock/progrock/0.1.2/progrock-0.1.2.jar",
+      "sha256": "0259feb5b02476eb300b7d64e543eb54ce4ac3dcae5398310f1642768fd53f2a",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "fipp/fipp:0.6.26:jar",
+      "kind": "mvn",
+      "group": "fipp",
+      "name": "fipp",
+      "version": "0.6.26",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/fipp/fipp/0.6.26/fipp-0.6.26.jar",
+      "sha256": "f7cb696cce55afd74c838d5441419c7e5f6d491af185a8e563dfa79796857283",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "com.stuartsierra/dependency:0.1.1:jar",
+      "kind": "mvn",
+      "group": "com.stuartsierra",
+      "name": "dependency",
+      "version": "0.1.1",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/com/stuartsierra/dependency/0.1.1/dependency-0.1.1.jar",
+      "sha256": "c7f5225f83dfc6e21097895ffdc48b05a7e5356aca43868e9c43892ae64dd4e5",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "expound/expound:0.9.0:jar",
+      "kind": "mvn",
+      "group": "expound",
+      "name": "expound",
+      "version": "0.9.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/expound/expound/0.9.0/expound-0.9.0.jar",
+      "sha256": "d6a372609918e0351bfa6a8bd693d18bc199e8ba7aafaec11e895afae018f95c",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/tools.namespace:1.3.0:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "tools.namespace",
+      "version": "1.3.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/tools.namespace/1.3.0/tools.namespace-1.3.0.jar",
+      "sha256": "127533ab1e1e7a700c8238ad7d58d4b42c418d6d8f34c304711503bc882e3a70",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "io.methvin/directory-watcher:0.17.3:jar",
+      "kind": "mvn",
+      "group": "io.methvin",
+      "name": "directory-watcher",
+      "version": "0.17.3",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/io/methvin/directory-watcher/0.17.3/directory-watcher-0.17.3.jar",
+      "sha256": "0523dd38a393a63b75e4320ff523034a0ac3cea697f6151a7ac8a893c322531e",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "mvxcvi/arrangement:2.1.0:jar",
+      "kind": "mvn",
+      "group": "mvxcvi",
+      "name": "arrangement",
+      "version": "2.1.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/mvxcvi/arrangement/2.1.0/arrangement-2.1.0.jar",
+      "sha256": "f37251385d220df8951e68d5255abb5197adbcbd8fc6b3d3fca872a2339f39c8",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/kaocha-junit-xml:1.17.101:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "kaocha-junit-xml",
+      "version": "1.17.101",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/kaocha-junit-xml/1.17.101/kaocha-junit-xml-1.17.101.jar",
+      "sha256": "777f2a1c390da5dcb139e1f22bdd87b4cc07140d41edac052072f69c1e361a67",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "aero/aero:1.1.6:jar",
+      "kind": "mvn",
+      "group": "aero",
+      "name": "aero",
+      "version": "1.1.6",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/aero/aero/1.1.6/aero-1.1.6.jar",
+      "sha256": "f4b0a9272da50c8091c5529c9fe355c47234f1eeb95fe92296e2c23f787f3d22",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "suspendable/suspendable:0.1.1:jar",
+      "kind": "mvn",
+      "group": "suspendable",
+      "name": "suspendable",
+      "version": "0.1.1",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/suspendable/suspendable/0.1.1/suspendable-0.1.1.jar",
+      "sha256": "0e335a07ba2c5f3d0076458a6a4d43c672004c049da5c5eb3cca10aad094b97c",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/data.xml:0.2.0-alpha6:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "data.xml",
+      "version": "0.2.0-alpha6",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/data.xml/0.2.0-alpha6/data.xml-0.2.0-alpha6.jar",
+      "sha256": "90882b4ac6f610e5fd711f885545a4909023b63d8e7d595918d97d181b59a828",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "com.nextjournal/beholder:1.0.2:jar",
+      "kind": "mvn",
+      "group": "com.nextjournal",
+      "name": "beholder",
+      "version": "1.0.2",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/com/nextjournal/beholder/1.0.2/beholder-1.0.2.jar",
+      "sha256": "89038c4db89d203bb5b12a5fb1adaa9295e05a2ac4b24faed996c934ea89d17a",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/kaocha-cloverage:1.1.89:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "kaocha-cloverage",
+      "version": "1.1.89",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/kaocha-cloverage/1.1.89/kaocha-cloverage-1.1.89.jar",
+      "sha256": "960f17676d66ff5e92502e612978bfb1b026fcce13dcb5bf1d85563c45999c94",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/data.codec:0.1.0:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "data.codec",
+      "version": "0.1.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/data.codec/0.1.0/data.codec-0.1.0.jar",
+      "sha256": "683d681950403c61c236354181eba1b5c8daf6c13581ea1389934a7d5eb28e07",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "cloverage/cloverage:1.2.4:jar",
+      "kind": "mvn",
+      "group": "cloverage",
+      "name": "cloverage",
+      "version": "1.2.4",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/cloverage/cloverage/1.2.4/cloverage-1.2.4.jar",
+      "sha256": "a669c437ca1a872a214bed9a69c63854aaa5ec418caccdb58a38a9b31410250f",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.slf4j/slf4j-api:1.7.36:jar",
+      "kind": "mvn",
+      "group": "org.slf4j",
+      "name": "slf4j-api",
+      "version": "1.7.36",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar",
+      "sha256": "d3ef575e3e4979678dc01bf1dcce51021493b4d11fb7f1be8ad982877c16a1c0",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "net.java.dev.jna/jna:5.12.1:jar",
+      "kind": "mvn",
+      "group": "net.java.dev.jna",
+      "name": "jna",
+      "version": "5.12.1",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.12.1/jna-5.12.1.jar",
+      "sha256": "91a814ac4f40d60dee91d842e1a8ad874c62197984403d0e3c30d39e55cf53b3",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/deep-diff2:2.11.216:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "deep-diff2",
+      "version": "2.11.216",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/deep-diff2/2.11.216/deep-diff2-2.11.216.jar",
+      "sha256": "536cc96663c83bae84b64830c1fc98e35b91caed834665c7d2880d7e5bb0e518",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/tools.namespace:0.2.11:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "tools.namespace",
+      "version": "0.2.11",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/tools.namespace/0.2.11/tools.namespace-0.2.11.jar",
+      "sha256": "0c5f0be70614edf5b0772d157de067c4f276c1f7ed27a3cd20bc0654aed8adae",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/data.json:2.4.0:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "data.json",
+      "version": "2.4.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/data.json/2.4.0/data.json-2.4.0.jar",
+      "sha256": "ec3f2f994e1eedd420313c452ba5518c5f5c97be5152dfed5650bc6611486adf",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "tortue/spy:2.15.0:jar",
+      "kind": "mvn",
+      "group": "tortue",
+      "name": "spy",
+      "version": "2.15.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/tortue/spy/2.15.0/spy-2.15.0.jar",
+      "sha256": "0050e33c5290113863c1fb34a4a2f2d6ec792c5bc19554c0954787dc6376fbbe",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "reloaded.repl/reloaded.repl:0.2.4:jar",
+      "kind": "mvn",
+      "group": "reloaded.repl",
+      "name": "reloaded.repl",
+      "version": "0.2.4",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/reloaded/repl/reloaded.repl/0.2.4/reloaded.repl-0.2.4.jar",
+      "sha256": "456fa8fee3d007d4f501806ecb5104a7beff4b070238d33bd827ea720bfd4d30",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/tools.namespace:0.3.256:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "tools.namespace",
+      "version": "0.3.256",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/tools.namespace/0.3.256/tools.namespace-0.3.256.jar",
+      "sha256": "8edd78d658e48eff7b7ad4d313df79cd99ea8997e8167cadd20da1c26b8e53c3",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "slingshot/slingshot:0.12.2:jar",
+      "kind": "mvn",
+      "group": "slingshot",
+      "name": "slingshot",
+      "version": "0.12.2",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/slingshot/slingshot/0.12.2/slingshot-0.12.2.jar",
+      "sha256": "a68ac22bf2ea3cd54ce34db70fd69844d631ef549f6450c278c30e6f79df63f3",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "com.stuartsierra/component:0.2.3:jar",
+      "kind": "mvn",
+      "group": "com.stuartsierra",
+      "name": "component",
+      "version": "0.2.3",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/com/stuartsierra/component/0.2.3/component-0.2.3.jar",
+      "sha256": "812ce44140c361ede8fc04c9d76a42180d0cf71a536c831889c3c8c2ea3a77e2",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/tools.reader:1.3.6:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "tools.reader",
+      "version": "1.3.6",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/tools.reader/1.3.6/tools.reader-1.3.6.jar",
+      "sha256": "11d1b31f2c65c3355b292bb9b44b8fcafda54b44da63e34ab97b79a8ab3bb8e0",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/tools.logging:0.5.0:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "tools.logging",
+      "version": "0.5.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/tools.logging/0.5.0/tools.logging-0.5.0.jar",
+      "sha256": "500fb4391f2ce7158d4cb49058ea48eb42e24f376b6e82fcfe88c91de5dec31a",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/test.check:1.1.3:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "test.check",
+      "version": "1.1.3",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/test.check/1.1.3/test.check-1.1.3.jar",
+      "sha256": "8b0637b13982734742fb3f4d129f0a9d9e3d752b1aec0c6f65ced4555f72b649",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/java.classpath:1.0.0:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "java.classpath",
+      "version": "1.0.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/java.classpath/1.0.0/java.classpath-1.0.0.jar",
+      "sha256": "c14e0e10304a5e5cfd2cc742fbdefac1f5293eec6070c2ffe8903fb5c7fe7d6f",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "riddley/riddley:0.2.0:jar",
+      "kind": "mvn",
+      "group": "riddley",
+      "name": "riddley",
+      "version": "0.2.0",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/riddley/riddley/0.2.0/riddley-0.2.0.jar",
+      "sha256": "7db27ee8f512933213457498c460d71d80d52b576463fb91e88ab15d0b228c68",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/clojure:1.12.5:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "clojure",
+      "version": "1.12.5",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/clojure/1.12.5/clojure-1.12.5.jar",
+      "sha256": "dfdee131460216a84fef22e537bb0d0579965f8f70338d748323dff26f8e5a8b",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "lambdaisland/clj-diff:1.4.78:jar",
+      "kind": "mvn",
+      "group": "lambdaisland",
+      "name": "clj-diff",
+      "version": "1.4.78",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "clojars",
+      "url": "https://repo.clojars.org/lambdaisland/clj-diff/1.4.78/clj-diff-1.4.78.jar",
+      "sha256": "a28bc6e4b29523cc29a472e57e6eab9580fa0d0368ad7be58b2a47e891a1459c",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/tools.cli:1.1.230:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "tools.cli",
+      "version": "1.1.230",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/tools.cli/1.1.230/tools.cli-1.1.230.jar",
+      "sha256": "916630b539a43ff468b4dd016c62857e2b4cb5da6686f1297587cdd43ca102cd",
+      "published_at": null,
+      "git": null
+    },
+    {
+      "id": "org.clojure/spec.alpha:0.5.238:jar",
+      "kind": "mvn",
+      "group": "org.clojure",
+      "name": "spec.alpha",
+      "version": "0.5.238",
+      "extension": "jar",
+      "classifier": null,
+      "repository": "central",
+      "url": "https://repo.maven.apache.org/maven2/org/clojure/spec.alpha/0.5.238/spec.alpha-0.5.238.jar",
+      "sha256": "94cd99b6ea639641f37af4860a643b6ed399ee5a8be5d717cff0b663c8d75077",
+      "published_at": null,
+      "git": null
+    }
+  ],
+  "skipped": [],
+  "modules": {
+    ".": {
+      "manifest_sha256": "b130e4f16555759691bd5611404cc9b2095827c00e3eb1c8adf206e877f61bcd",
+      "lib": "",
+      "version": "",
+      "jvm-opts": [],
+      "launch-opts": [],
+      "paths": [
+        "src"
+      ],
+      "classpath": [],
+      "aliases": {},
+      "build": {
+        "artifact-dirs": [
+          "src",
+          "resources"
+        ],
+        "java-src-dirs": [],
+        "class-dir": "target/classes",
+        "jar": true,
+        "uberjar": null
+      },
+      "publish": {
+        "enabled": false,
+        "repo": "",
+        "sign-releases?": false
+      },
+      "test": {
+        "enabled": true
+      }
+    },
+    "dev": {
+      "manifest_sha256": "6ed63007798e25e5d3c227195738237b9dc39921da4a9f51515a51e9462614db",
+      "lib": "",
+      "version": "",
+      "jvm-opts": [],
+      "launch-opts": [],
+      "paths": [
+        "."
+      ],
+      "classpath": [
+        {
+          "local": "modules/pier-example"
+        },
+        "org.clojure/clojure:1.12.5:jar",
+        "reloaded.repl/reloaded.repl:0.2.4:jar",
+        "org.clojure/core.specs.alpha:0.4.74:jar",
+        "org.clojure/spec.alpha:0.5.238:jar",
+        "com.stuartsierra/component:0.2.3:jar",
+        "org.clojure/tools.namespace:0.2.11:jar",
+        "suspendable/suspendable:0.1.1:jar",
+        "com.stuartsierra/dependency:0.1.1:jar"
+      ],
+      "aliases": {},
+      "build": {
+        "artifact-dirs": [
+          "."
+        ],
+        "java-src-dirs": [],
+        "class-dir": "target/classes",
+        "jar": true,
+        "uberjar": null
+      },
+      "publish": {
+        "enabled": false,
+        "repo": "",
+        "sign-releases?": false
+      },
+      "test": {
+        "enabled": true
+      }
+    },
+    "modules/pier-example": {
+      "manifest_sha256": "02dcc3a56f95268e6901a93f6e45c0c35746d9074f42c9a2a34df78d572f2caf",
+      "lib": "com.example/pier-example",
+      "version": "0.1.0",
+      "jvm-opts": [],
+      "launch-opts": [],
+      "paths": [
+        "src"
+      ],
+      "classpath": [
+        "org.clojure/clojure:1.12.5:jar",
+        "org.clojure/core.specs.alpha:0.4.74:jar",
+        "org.clojure/spec.alpha:0.5.238:jar"
+      ],
+      "aliases": {
+        "test": {
+          "classpath": [
+            "lambdaisland/kaocha:1.91.1392:jar",
+            "lambdaisland/kaocha-cloverage:1.1.89:jar",
+            "lambdaisland/kaocha-junit-xml:1.17.101:jar",
+            "org.clojure/clojure:1.12.5:jar",
+            "org.clojure/test.check:1.1.3:jar",
+            "tortue/spy:2.15.0:jar",
+            "aero/aero:1.1.6:jar",
+            "com.nextjournal/beholder:1.0.2:jar",
+            "expound/expound:0.9.0:jar",
+            "hawk/hawk:0.2.11:jar",
+            "lambdaisland/deep-diff2:2.11.216:jar",
+            "lambdaisland/tools.namespace:0.3.256:jar",
+            "meta-merge/meta-merge:1.0.0:jar",
+            "org.clojure/tools.cli:1.1.230:jar",
+            "org.tcrawley/dynapath:1.1.0:jar",
+            "progrock/progrock:0.1.2:jar",
+            "slingshot/slingshot:0.12.2:jar",
+            "cloverage/cloverage:1.2.4:jar",
+            "org.clojure/core.specs.alpha:0.4.74:jar",
+            "org.clojure/spec.alpha:0.5.238:jar",
+            "io.methvin/directory-watcher:0.17.3:jar",
+            "net.incongru.watchservice/barbary-watchservice:1.0:jar",
+            "fipp/fipp:0.6.26:jar",
+            "lambdaisland/clj-diff:1.4.78:jar",
+            "mvxcvi/arrangement:2.1.0:jar",
+            "org.clojure/core.rrb-vector:0.1.2:jar",
+            "org.clojure/java.classpath:1.0.0:jar",
+            "org.clojure/tools.reader:1.3.6:jar",
+            "org.clojure/data.json:2.4.0:jar",
+            "org.clojure/data.xml:0.2.0-alpha6:jar",
+            "org.clojure/tools.logging:0.5.0:jar",
+            "org.clojure/tools.namespace:1.3.0:jar",
+            "riddley/riddley:0.2.0:jar",
+            "net.java.dev.jna/jna:5.12.1:jar",
+            "org.slf4j/slf4j-api:1.7.36:jar",
+            "org.clojure/data.codec:0.1.0:jar"
+          ],
+          "paths": [
+            "test"
+          ],
+          "jvm-opts": [],
+          "env": {},
+          "exec": {
+            "type": "exec-fn",
+            "fn": "kaocha.runner/exec-fn"
+          }
+        }
+      },
+      "build": {
+        "artifact-dirs": [
+          "src"
+        ],
+        "java-src-dirs": [],
+        "class-dir": "target/classes",
+        "jar": true,
+        "uberjar": null
+      },
+      "publish": {
+        "enabled": true,
+        "repo": "pier",
+        "sign-releases?": false
+      },
+      "test": {
+        "enabled": true
+      }
+    }
+  }
+}

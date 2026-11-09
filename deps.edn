@@ -1,0 +1,2 @@
+{:rig/modules ["modules/pier-example" "dev"]
+ :rig/jvm "21"}

@@ -1,0 +1,12 @@
+# Rig gate config for the pier demo (rig expects this at
+# ~/.config/rig/auth.yaml). The gate fronts the pier URL: every :mvn/repos
+# entry with that :url and :auth :oidc authenticates with this gate's bearer.
+#
+# In CI, release.yml copies this file to $HOME/.config/rig/ and the runner
+# injects the bearer as RIG_TOKEN_PIER (a GitHub Actions OIDC token).
+# For local work, copy or symlink it the same way and provide
+# RIG_TOKEN_PIER when a command resolves from or publishes to pier.
+gates:
+  pier:
+    url: http://194.182.165.182
+    well-known: https://actions.githubusercontent.com/.well-known/openid-configuration

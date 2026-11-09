@@ -1,0 +1,17 @@
+{:rig/lib com.example/pier-example
+ :rig/version "0.1.0"
+ :rig/publish? true
+ :rig/publish {:repo "pier"}
+ :paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.12.5"}}
+ :mvn/repos {"central" {:url "https://repo.maven.apache.org/maven2"}
+             "clojars" {:url "https://repo.clojars.org"}
+             "pier" {:url "http://194.182.165.182" :auth :oidc}}
+ :aliases
+ {:test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.91.1392"}
+                      org.clojure/test.check {:mvn/version "1.1.3"}
+                      tortue/spy {:mvn/version "2.15.0"}
+                      lambdaisland/kaocha-cloverage {:mvn/version "1.1.89"}
+                      lambdaisland/kaocha-junit-xml {:mvn/version "1.17.101"}}
+         :extra-paths ["test"]
+         :exec-fn kaocha.runner/exec-fn}}}

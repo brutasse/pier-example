@@ -1,0 +1,4 @@
+{:paths ["."]
+ :deps {com.example/pier-example {:local/root "../modules/pier-example"}
+        org.clojure/clojure {:mvn/version "1.12.5"}
+        reloaded.repl/reloaded.repl {:mvn/version "0.2.4"}}}

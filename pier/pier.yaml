@@ -1,0 +1,65 @@
+# Pier configuration for the pier-example demo: a private Maven repository
+# on this host, OIDC-gated, with pull-through of Maven Central and Clojars.
+#
+# S3 credentials are NOT configured here: the service uses the standard
+# AWS SDK credential chain (environment variables, shared config file,
+# instance profile).
+#
+# Run with:
+#   pier serve -config pier.yaml
+listen: ":80"
+
+s3:
+  # TODO: fill these in for the S3 backend on this host.
+  bucket: pier-example
+  prefix: maven
+  region: change-me
+  # Custom S3 endpoint (Exoscale Object Storage, MinIO, ...).
+  # Leave empty for AWS. A scheme-less URL defaults to https.
+  # endpoint: https://sos-ch-gva-2.exo.io
+  # Path-style URLs; defaults to true when endpoint is set, false otherwise.
+  # force_path_style: true
+
+# Re-publishing a non-SNAPSHOT GAV is rejected (409). Default true.
+immutable_releases: true
+
+# Pull-through cache: the consumer side of the demo resolves
+# org.clojure/* (and any other public artifact) through these upstreams.
+upstream:
+  - name: central
+    url: https://repo.maven.apache.org/maven2/
+  - name: clojars
+    url: https://repo.clojars.org/
+
+# Groups reserved for internal uploads. The demo library lives here:
+# Pier never pulls com.example/* from upstream, and rejects uploads
+# anywhere else.
+reserved_groups:
+  - com.example
+
+auth:
+  issuers:
+    # GitHub Actions OIDC tokens (trusted publishing). Workflows must
+    # request this audience — see .github/workflows/release.yml.
+    - name: github
+      well_known: https://actions.githubusercontent.com/.well-known/openid-configuration
+      expected_iss: https://token.actions.githubusercontent.com
+      audiences:
+        - "https://194.182.165.182/"
+
+policy:
+  # Deny anything no rule allows.
+  default_deny: true
+  # Rules are evaluated in order; the first match allows the request.
+  rules:
+    # Only the demo repo may publish, and only from release tags.
+    - name: publish-from-tags
+      action: [upload]
+      when: |
+        claims.repository == "brutasse/pier-example" &&
+        claims.sub.startsWith("repo:brutasse/pier-example:ref:refs/tags/v")
+    # CI jobs of the demo repo may download (the verify job of release.yml).
+    - name: ci-download
+      action: [download]
+      when: |
+        claims.repository == "brutasse/pier-example"
