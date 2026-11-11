@@ -38,5 +38,13 @@ jobs:
         env:
           RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
         run: |
-          rig check
+          rig check || {
+            # rig only prints the status code; pier's response body
+            # carries the exact refusal reason (issuer, audience, JWKS).
+            echo "== pier's view of the token =="
+            curl -sS -w '\nstatus: %{http_code}\n' \
+              -H "Authorization: Bearer $RIG_TOKEN_PIER" \
+              "http://194.182.165.182/org/clojure/clojure/1.12.5/clojure-1.12.5.pom" | head -5
+            exit 1
+          }
           rig test
