@@ -28,10 +28,16 @@ jobs:
       - name: Request the OIDC token
         id: token
         run: |
-          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            -d audience="https://194.182.165.182/" \
+          oidc="$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"audience\":\"https://194.182.165.182/\"}" \
             "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
-          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
+          # The endpoint answers error JSON (not a JWT) on failure; reject
+          # anything that is not a compact three-segment JWT and show why.
+          if ! printf '%s' "$oidc" | grep -qE '^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]*$'; then
+            echo "OIDC token request failed, response: $oidc" >&2
+            exit 1
+          fi
           echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
 
       - name: Check and test
