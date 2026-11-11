@@ -31,7 +31,7 @@ jobs:
           oidc="$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             -H "Content-Type: application/json" \
             -d "{\"audience\":\"https://194.182.165.182/\"}" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
+            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F" | jq -r .value)"
           # The endpoint answers error JSON (not a JWT) on failure; reject
           # anything that is not a compact three-segment JWT and show why.
           if ! printf '%s' "$oidc" | grep -qE '^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]*$'; then
