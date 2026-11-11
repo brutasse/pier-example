@@ -24,7 +24,7 @@ jobs:
       - name: Rig gate config
         run: |
           mkdir -p "$HOME/.config/rig"
-          cp pier/rig-auth.yaml "$HOME/.config/rig/auth.yaml"
+          cp pier/rig-auth-gha.yaml "$HOME/.config/rig/auth.yaml"
 
       - name: Request the OIDC token
         id: token
@@ -57,7 +57,7 @@ jobs:
       - name: Rig gate config
         run: |
           mkdir -p "$HOME/.config/rig"
-          cp pier/rig-auth.yaml "$HOME/.config/rig/auth.yaml"
+          cp pier/rig-auth-gha.yaml "$HOME/.config/rig/auth.yaml"
 
       - name: Request the OIDC token
         id: token
