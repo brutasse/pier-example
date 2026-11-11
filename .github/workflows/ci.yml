@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   gate:
     runs-on: ubuntu-latest
@@ -16,7 +20,18 @@ jobs:
         with:
           version: v0.4.1
 
+      - name: Request the OIDC token
+        id: token
+        run: |
+          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            -d audience="https://194.182.165.182/" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
+          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
+          echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
+
       - name: Check and test
+        env:
+          RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
         run: |
           rig check
           rig test

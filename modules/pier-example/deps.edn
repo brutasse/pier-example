@@ -4,8 +4,8 @@
  :rig/publish {:repo "pier"}
  :paths ["src"]
  :deps {org.clojure/clojure {:mvn/version "1.12.5"}}
- :mvn/repos {"central" {:url "https://repo.maven.apache.org/maven2"}
-             "clojars" {:url "https://repo.clojars.org"}
+ :mvn/repos {"central" {:url "http://194.182.165.182" :auth :oidc}
+             "clojars" {:url "http://194.182.165.182" :auth :oidc}
              "pier" {:url "http://194.182.165.182" :auth :oidc}}
  :aliases
  {:test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.91.1392"}
