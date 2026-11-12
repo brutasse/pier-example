@@ -1,14 +1,15 @@
 # Rig gate config for the pier demo's CI (GitHub Actions). Copied to
 # ~/.config/rig/auth.yaml by .github/workflows/ci.yml and release.yml.
 #
-# RIG_TOKEN_PIER is always set in CI — a GitHub Actions OIDC token
-# requested with audience https://194.182.165.182/ — and rig uses it
-# verbatim. The well-known below is not consulted on that path; it
-# documents the issuer the token comes from.
+# The well-known below marks the gate as the GitHub Actions issuer: in CI
+# rig negotiates the token itself, exchanging the runner's id-token
+# credentials (set by the id-token: write permission) for an OIDC token
+# carrying the audience below. No static token lives in the repo or the
+# workflow.
 #
 # Workstations use pier/rig-auth.yaml (Dex) instead.
 gates:
   pier:
     url: http://194.182.165.182
-    well-known: https://actions.githubusercontent.com/.well-known/openid-configuration
+    well-known: https://token.actions.githubusercontent.com/.well-known/openid-configuration
     audience: https://194.182.165.182/

@@ -19,26 +19,17 @@ jobs:
       - name: Install rig (binary, JVM, cache)
         uses: brutasse/setup-rig@b204f6b12fde6574ebbebe0227fcaaa10391882f # v2.0.0
         with:
-          version: v0.4.1
+          version: v0.5.1
 
       - name: Rig gate config
         run: |
           mkdir -p "$HOME/.config/rig"
           cp pier/rig-auth-gha.yaml "$HOME/.config/rig/auth.yaml"
 
-      - name: Request the OIDC token
-        id: token
-        run: |
-          # The audience must match pier/pier.yaml (auth.issuers[].audiences).
-          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            -d audience="https://194.182.165.182/" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
-          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
-          echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
-
+      # Rig negotiates the id token itself from the runner's credentials
+      # (id-token: write). The audience comes from the gate config and
+      # must match pier/pier.yaml (auth.issuers[].audiences).
       - name: Publish
-        env:
-          RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
         run: rig publish
 
   verify:
@@ -52,27 +43,19 @@ jobs:
       - name: Install rig (binary, JVM, cache)
         uses: brutasse/setup-rig@b204f6b12fde6574ebbebe0227fcaaa10391882f # v2.0.0
         with:
-          version: v0.4.1
+          version: v0.5.1
 
       - name: Rig gate config
         run: |
           mkdir -p "$HOME/.config/rig"
           cp pier/rig-auth-gha.yaml "$HOME/.config/rig/auth.yaml"
 
-      - name: Request the OIDC token
-        id: token
-        run: |
-          oidc="$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            -d audience="https://194.182.165.182/" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=https%3A%2F%2F194.182.165.182%2F")"
-          [ -n "$oidc" ] || { echo "no OIDC token" >&2; exit 1; }
-          echo "oidc=$oidc" >> "$GITHUB_OUTPUT"
-
       - name: Auth boundary
-        env:
-          PIER_TOKEN: ${{ steps.token.outputs.oidc }}
         run: |
           set -eu
+          # rig negotiates the id token from the runner's credentials
+          # (id-token: write) and prints it to stdout.
+          PIER_TOKEN="$(rig auth get pier)"
           ver="${GITHUB_REF_NAME#v}"
           jar="$PIER/com/example/pier-example/$ver/pier-example-$ver.jar"
           code() { curl -s -o /dev/null -w '%{http_code}' "$@"; }
@@ -84,8 +67,6 @@ jobs:
           [ "$without_token" = "401" ]
 
       - name: Consume the artifact through pier
-        env:
-          RIG_TOKEN_PIER: ${{ steps.token.outputs.oidc }}
         run: |
           set -eu
           ver="${GITHUB_REF_NAME#v}"

@@ -42,7 +42,7 @@ auth:
     # GitHub Actions OIDC tokens (trusted publishing). Workflows must
     # request this audience — see .github/workflows/release.yml.
     - name: github
-      well_known: https://actions.githubusercontent.com/.well-known/openid-configuration
+      well_known: https://token.actions.githubusercontent.com/.well-known/openid-configuration
       expected_iss: https://token.actions.githubusercontent.com
       audiences:
         - "https://194.182.165.182/"
