@@ -12,4 +12,4 @@ gates:
   pier:
     url: http://194.182.165.182
     well-known: https://token.actions.githubusercontent.com/.well-known/openid-configuration
-    audience: https://194.182.165.182/
+    audience: https://github.com/brutasse
